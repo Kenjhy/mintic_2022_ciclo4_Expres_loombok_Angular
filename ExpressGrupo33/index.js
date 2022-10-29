@@ -106,8 +106,7 @@ app.get("/UsuarioCedula", (request, response) => {
 
    //Cuerpo o parametro de solicitud, simbolo pay
   const filtro = {
-    cedula: request.body.cedula | request.query.cedula,
-    nombre: request.body.nombre ? request.body.nombre : request.query.nombre,
+    cedula: request.body.cedula | request.query.cedula
   };
 
   UsuarioModel.find(filtro, function (error, documentos) {
@@ -124,8 +123,7 @@ app.get("/VehiculoPlaca", (request, response) => {
 
   //Cuerpo o parametro de solicitud, simbolo pay
  const filtr = {
-    placa: request.body.placa ? request.body.placa : request.query.placa,
-    marca: request.body.marca ? request.body.marca : request.query.marca,
+    placa: request.body.placa ? request.body.placa : request.query.placa
  };
 
  console.log(filtr)
