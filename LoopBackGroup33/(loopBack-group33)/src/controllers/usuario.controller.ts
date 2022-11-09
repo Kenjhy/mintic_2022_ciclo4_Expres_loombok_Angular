@@ -37,12 +37,12 @@ export class UsuarioController {
         'application/json': {
           schema: getModelSchemaRef(Usuario, {
             title: 'NewUsuario',
-            exclude: ['id_usuario'],
+            
           }),
         },
       },
     })
-    usuario: Omit<Usuario, 'id_usuario'>,
+    usuario: Usuario,
   ): Promise<Usuario> {
     return this.usuarioRepository.create(usuario);
   }

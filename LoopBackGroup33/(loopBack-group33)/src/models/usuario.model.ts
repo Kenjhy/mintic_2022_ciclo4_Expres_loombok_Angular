@@ -1,27 +1,21 @@
-import {Entity, model, property, hasMany, belongsTo, hasOne} from '@loopback/repository';
-import {Rol} from './rol.model';
+import {Entity, model, property, belongsTo, hasOne} from '@loopback/repository';
 import {Sede} from './sede.model';
-import {Veicle} from './veicle.model';
+import {Rol} from './rol.model';
+import {Vehiculo} from './vehiculo.model';
 
 @model()
 export class Usuario extends Entity {
   @property({
     type: 'string',
     id: true,
-    generated: true,
+    generated: false,
   })
-  id_usuario?: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  cedula: string;
+  cedula?: string;
 
   @property({
     type: 'string',
   })
-  name?: string;
+  nombre?: string;
 
   @property({
     type: 'number',
@@ -31,50 +25,41 @@ export class Usuario extends Entity {
   @property({
     type: 'date',
   })
-  birt_date?: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  usuario: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  clave: string;
-
-  @property({
-    type: 'object',
-    required: true,
-  })
-  veicle: object;
-
-  @property({
-    type: 'object',
-    required: true,
-  })
-  rol: object;
-
-  @property({
-    type: 'object',
-  })
-  notificacion: object;
-
-  @hasMany(() => Rol, {keyTo: 'usuario_rol_id'})
-  rols: Rol[];
-
-  @belongsTo(() => Sede, {name: 'r_usuario_sede_id'})
-  usuario_sede_id: string;
-
-  @hasOne(() => Veicle, {keyTo: 'usuario_veicle'})
-  s_usuario_veicle: Veicle;
+  fecha_nacimiento?: string;
 
   @property({
     type: 'string',
   })
-  rol_usuario_id?: string;
+  rol?: string;
+
+  @property({
+    type: 'string',
+  })
+  vehiculo?: string;
+
+  @property({
+    type: 'string',
+  })
+  sede?: string;
+
+  @property({
+    type: 'string',
+  })
+  usuaro?: string;
+
+  @property({
+    type: 'string',
+  })
+  contrasenia?: string;
+
+  @belongsTo(() => Sede, {name: 'sede_usuaro_id'})
+  sedeId: string;
+
+  @hasOne(() => Rol)
+  rol_usuario: Rol;
+
+  @hasOne(() => Vehiculo)
+  vehiculo_usuario: Vehiculo;
 
   constructor(data?: Partial<Usuario>) {
     super(data);
