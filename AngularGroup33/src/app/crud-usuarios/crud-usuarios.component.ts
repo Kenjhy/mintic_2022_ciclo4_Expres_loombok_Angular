@@ -16,14 +16,14 @@ export class CrudUsuariosComponent implements OnInit {
   nombreUsuarioSeleccionado = "";
 
   displayedColumns: string[] = [
-    "isUsuario",
+    // "isUsuario",
     "nombre",
     "telefono",
     "fechaNacimiento",
-    "contrasenia",
+    // "contrasenia",
     "tipoUsuario",
-    "sedeId",
-    "rolId",
+    // "sedeId",
+    // "rolId",
     "acciones",
   ];
   datos: any = [];
@@ -56,14 +56,14 @@ export class CrudUsuariosComponent implements OnInit {
     private fb: FormBuilder
   )  {    
     this.formUser = this.fb.group({
-      isUsuario: ["648"],
+      // isUsuario: ["648"],
       nombre: [""],
       telefono: [""],
       fechaNacimiento: ["2022-11-08T00:22:27.812Z"],
-      contrasenia: [""],
+      // contrasenia: [""],
       tipoUsuario: [""],
-      sedeId: ["8765456"],
-      rolId: ["987654345675678"],
+      // sedeId: ["8765456"],
+      // rolId: ["987654345675678"],
     });
   }
 

@@ -11,7 +11,7 @@ export * from './revision-sede.controller';
 export * from './sede-revision.controller';
 export * from './repuesto-revision.controller';
 export * from './revision-repuesto.controller';
-export * from './usaurio.controller';
+export * from './usuarios.controller';
 export * from './rol.controller';
 export * from './sede.controller';
 export * from './vehiculo.controller';

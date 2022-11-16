@@ -10,7 +10,7 @@ export class Usuario extends Entity {
     type: 'string',
     id: true,
     generated: false,
-    required: true,
+    required: false,
   })
   isUsuario: string;
 
