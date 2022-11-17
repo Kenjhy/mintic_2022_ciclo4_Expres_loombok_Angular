@@ -35,38 +35,58 @@
       >
     </div>
   
-    <div class="cls-form" [formGroup]="formUser" *ngIf="showForm">
+    <div class="cls-form" [formGroup]="formVehiculos" *ngIf="showForm">
       <div class="cls-field">
-        <label for="">Nombre:</label>
-        <input type="text" formControlName="nombre" />
+        <label for="">Numero de Placa:</label>
+        <input type="text" formControlName="placa" />
       </div>
   
       <div class="cls-field">
-        <label for="">Teléfono:</label>
-        <input
-          type="text"
-          placeholder="+57 00 00 00"
-          formControlName="telefono"
-        />
-      </div>
-  
-      <div class="cls-field">
-        <label for="">Fecha de nacimiento:</label>
-        <input type="date" formControlName="fechaNacimiento" />
-      </div>
-  
-      <div class="cls-field">
-        <label for="">Tipo:</label>
-        <select name="" id="" formControlName="tipoUsuario">
+        <label for="">Tipo de Vehiculo:</label>
+        <select name="" id="" formControlName="tipo">
           <option *ngFor="let tipo of tipos" [value]="tipo.value">
             {{ tipo.text }}
           </option>
         </select>
       </div>
+      
+      <div class="cls-field">
+        <label for="">Marca del Vehiculo:</label>
+        <input type="text" formControlName="marca" />
+      </div>
+
+      <div class="cls-field">
+        <label for="">Modelo del Vehiculo:</label>
+        <input type="text" formControlName="modelo" />
+      </div>
+
+      <div class="cls-field">
+        <label for="">Capacidad  de Pasajeros:</label>
+        <input
+          type="text"
+          placeholder="00 00 00"
+          formControlName="capacidad_pasajeros"
+        />
+      </div>
+
+      <div class="cls-field">
+        <label for="">Cilindraje del Vehiculo:</label>
+        <input type="text" formControlName="cilindraje" />
+      </div>
+
+      <div class="cls-field">
+        <label for="">Pais Origen del Vehiculo:</label>
+        <input type="text" formControlName="pais" />
+      </div>
+
+      <div class="cls-field">
+        <label for="">Descripcion del Vehiculo:</label>
+        <input type="text" formControlName="descripcion" />
+      </div>  
   
       <button
         *ngIf="modeForm == 'adicion'"
-        (click)="saveUser()"
+        (click)="saveVehiculos()"
         style="color: #fff !important"
         mat-button
         color="primary"
@@ -95,33 +115,55 @@
                       The actual rendered columns are set as a property on the row definition" -->
   
         <!-- Position Column -->
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef>Nombre</th>
-          <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+        <ng-container matColumnDef="placa">
+          <th mat-header-cell *matHeaderCellDef>placa</th>
+          <td mat-cell *matCellDef="let element">{{ element.placa }}</td>
         </ng-container>
   
         <!-- Name Column -->
-        <ng-container matColumnDef="telefono">
-          <th mat-header-cell *matHeaderCellDef>Teléfono</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.telefono }}
+        <ng-container matColumnDef="tipo">
+          <th mat-header-cell *matHeaderCellDef>tipo</th>
+          <td mat-cell *matCellDef="let element">{{ element.tipo }}
           </td>
         </ng-container>
   
         <!-- Weight Column -->
-        <ng-container matColumnDef="tipoUsuario">
-          <th mat-header-cell *matHeaderCellDef>Tipo</th>
-          <td mat-cell *matCellDef="let element">{{ element.tipoUsuario }}</td>
+        <ng-container matColumnDef="marca">
+          <th mat-header-cell *matHeaderCellDef>marca</th>
+          <td mat-cell *matCellDef="let element">{{ element.marca }}</td>
         </ng-container>
   
         <!-- Symbol Column -->
-        <ng-container matColumnDef="fechaNacimiento">
-          <th mat-header-cell *matHeaderCellDef>Fecha nacimiento</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.fechaNacimiento }}
+        <ng-container matColumnDef="modelo">
+          <th mat-header-cell *matHeaderCellDef>modelo</th>
+          <td mat-cell *matCellDef="let element">{{ element.modelo }}
           </td>
         </ng-container>
-  
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="capacidad_pasajeros">
+          <th mat-header-cell *matHeaderCellDef>capacidad pasajeros</th>
+          <td mat-cell *matCellDef="let element">{{ element.capacidad_pasajeros }}</td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="cilindraje">
+          <th mat-header-cell *matHeaderCellDef>cilindraje</th>
+          <td mat-cell *matCellDef="let element">{{ element.cilindraje }}</td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="pais">
+          <th mat-header-cell *matHeaderCellDef>pais</th>
+          <td mat-cell *matCellDef="let element">{{ element.pais }}</td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef>descripcion</th>
+          <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
+        </ng-container>
+ 
         <ng-container matColumnDef="acciones">
           <th mat-header-cell *matHeaderCellDef>Acciones</th>
           <td
@@ -132,7 +174,7 @@
               <a class="cls-link" (click)="selectUserEdit(element)">
                 <button style="margin: 10px" mat-raised-button color="accent">Editar</button>
               </a>
-              <a class="cls-link" (click)="deleteUser(element.idUsuario)">
+              <a class="cls-link" (click)="deleteUser(element.placa)">
                 <button style="margin: 10px"  mat-raised-button color="warn">Eliminar</button>
               </a>
               <a class="cls-link" (click)="selectUserEdit(element)">

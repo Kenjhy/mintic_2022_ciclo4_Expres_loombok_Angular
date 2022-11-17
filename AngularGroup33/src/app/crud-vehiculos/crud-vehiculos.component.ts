@@ -16,18 +16,22 @@ export class CrudVehiculosComponent implements OnInit {
   value = '';
 
   edad = 0;
-  nombreUsuarioSeleccionado = '';
+  nombrevehiculosSeleccionado = '';
 
   displayedColumns: string[] = [
-    'nombre',
-    'telefono',
-    'tipoUsuario',
-    'fechaNacimiento',
+    'placa',
+    'tipo',
+    'marca',
+    'modelo',
+    'capacidad_pasajeros',
+    'cilindraje',
+    'pais',
+    'descripcion',
     'acciones',
   ];
   datos = [];
 
-  formUser: FormGroup = new FormGroup({});
+  formVehiculos: FormGroup = new FormGroup({});
 
   tipos = [
     {
@@ -54,16 +58,19 @@ export class CrudVehiculosComponent implements OnInit {
     private servicioBackend: RequestBackendService,
     private fb: FormBuilder
   ) {
-    this.getUsers();
+    this.getVehiculos();
     this.sortTipos();
 
-    this.formUser = this.fb.group({
-      nombre: [''],
-      telefono: [''],
-      tipoUsuario: [''],
-      fechaNacimiento: ['2022-11-08T00:22:27.812Z'],
-      contrasenia: ['111'],
-      sedeId: ['63557cfb71cf34a13bd99ad7'],
+    this.formVehiculos = this.fb.group({
+      placa: [''],
+      tipo: [''],
+      marca: [''],
+      modelo: [''],
+      capacidad_pasajeros: [''],
+      cilindraje: [''],
+      pais: [''],
+      descripcion: [''],
+      usuarioId: ['222']
     });
   }
 
@@ -94,11 +101,11 @@ export class CrudVehiculosComponent implements OnInit {
   }
 
   seleccionarNombre(nombreNuevo: string): void {
-    this.nombreUsuarioSeleccionado = nombreNuevo;
+    this.nombrevehiculosSeleccionado = nombreNuevo;
   }
 
-  getUsers(): void {
-    this.servicioBackend.getData('usuarios').subscribe(
+  getVehiculos(): void {
+    this.servicioBackend.getData('vehiculos').subscribe(
       (data) => {
         console.log(data);
         this.datos = data;
@@ -110,27 +117,27 @@ export class CrudVehiculosComponent implements OnInit {
     );
   }
 
-  saveUser(): void {
-    const datosUser = this.formUser.getRawValue();
-    datosUser['fechaNacimiento'] = new Date(datosUser['fechaNacimiento']);
+  saveVehiculos(): void {
+    const datosUser = this.formVehiculos.getRawValue();
+    // datosUser['fechaNacimiento'] = new Date(datosUser['fechaNacimiento']);
 
     console.log(datosUser);
 
     this.servicioBackend
-      .postData('usuarios', JSON.stringify(datosUser))
+      .postData('vehiculos', JSON.stringify(datosUser))
       .subscribe({
         next: (data) => {
           console.log(data);
-          this.getUsers();
+          this.getVehiculos();
           Swal.fire(
-            'Usuario creado',
-            'Todo ha salido muy bien con la creación del usuario',
+            'vehiculo creado',
+            'Todo ha salido muy bien con la creación del vehiculo',
             'success'
           );
         },
         error: (error) => {
           console.log(error);
-          Swal.fire('Usuario NO creado', 'Ocurrió un error', 'error');
+          Swal.fire('vehiculo NO creado', 'Ocurrió un error', 'error');
         },
         complete: () => {
           console.log('complete');
@@ -147,7 +154,7 @@ export class CrudVehiculosComponent implements OnInit {
     console.log(code);
 
     Swal.fire({
-      title: '¿Está seguro de eliminar el usuario?',
+      title: '¿Está seguro de eliminar el vehiculo?',
       showDenyButton: false,
       showCancelButton: true,
       confirmButtonText: 'Eliminar',
@@ -155,14 +162,14 @@ export class CrudVehiculosComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.servicioBackend.deleteData('usuarios', code).subscribe({
+        this.servicioBackend.deleteData('vehiculos', code).subscribe({
           next: (data) => {
-            this.getUsers();
+            this.getVehiculos();
             Swal.fire('Ok!', 'Eliminado', 'success');
           },
           error: (error) => {
             console.log(error);
-            Swal.fire('Usuario NO eliminado', 'Ocurrió un error', 'error');
+            Swal.fire('vehiculo NO eliminado', 'Ocurrió un error', 'error');
           },
           complete: () => {
             console.log('complete');
@@ -175,7 +182,7 @@ export class CrudVehiculosComponent implements OnInit {
   selectUserEdit(user: any): void {
     this.showForm = true;
     this.modeForm = 'edicion';
-    this.formUser.patchValue(user);
+    this.formVehiculos.patchValue(user);
   }
 
   updateUser(): void {}
