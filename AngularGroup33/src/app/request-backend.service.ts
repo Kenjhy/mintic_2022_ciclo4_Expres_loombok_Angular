@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RequestBackendService {
-  url = 'http://localhost:3000/';
+  url = 'http://[::1]:3000/';
 
   constructor(private http: HttpClient) {}
 

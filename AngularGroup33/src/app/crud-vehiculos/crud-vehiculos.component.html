@@ -127,12 +127,17 @@
           <td
             mat-cell
             *matCellDef="let element"
-            style="display: flex; gap: 5px; flex-direction: column"
-          >
-            <a class="cls-link" (click)="selectUserEdit(element)"> Editar</a>
-            <a class="cls-link" (click)="deleteUser(element.idUsuario)">
-              Eliminar</a
+            style="display: flex-container; gap: 5px; flex-direction: column"
             >
+              <a class="cls-link" (click)="selectUserEdit(element)">
+                <button style="margin: 10px" mat-raised-button color="accent">Editar</button>
+              </a>
+              <a class="cls-link" (click)="deleteUser(element.idUsuario)">
+                <button style="margin: 10px"  mat-raised-button color="warn">Eliminar</button>
+              </a>
+              <a class="cls-link" (click)="selectUserEdit(element)">
+                <button style="margin: 10px" mat-raised-button color="accent">Detalle</button>
+              </a>
           </td>
         </ng-container>
   

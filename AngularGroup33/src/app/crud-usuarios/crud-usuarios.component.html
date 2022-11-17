@@ -1,5 +1,6 @@
 <div class="cls-content-page">
-  <div style="
+  <div
+    style="
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -34,25 +35,16 @@
     >
   </div>
 
-  <!-- <div class="cls-form" [formGroup]="formUser" *ngIf="showForm">
+  <div class="cls-form" [formGroup]="formUser" *ngIf="showForm">
     <div class="cls-field">
-      <label for="">Cedula:</label>
-      <input
-        type="text"
-        placeholder="Numero de Cedula"
-        formControlName="isUsuario"
-      />
-    </div> -->
-
-    <div class="cls-field [formGroup]="formUser" *ngIf="showForm">
       <label for="">Nombre:</label>
-      <input type="text" placeholder="Nombres" formControlName="nombre" />
+      <input type="text" formControlName="nombre" />
     </div>
 
     <div class="cls-field">
       <label for="">Teléfono:</label>
       <input
-        type="text"
+        type="number"
         placeholder="+57 00 00 00"
         formControlName="telefono"
       />
@@ -63,38 +55,30 @@
       <input type="date" formControlName="fechaNacimiento" />
     </div>
 
-    <!-- <div class="cls-field">
-      <label for="">contraseña:</label>
-      <input
-        type="text"
-        placeholder="Contraseña"
-        formControlName="contrasenia"
-      />
-    </div> -->
-
     <div class="cls-field">
-      <label for="">Tipo Usuario:</label>
+      <label for="">Tipo:</label>
       <select name="" id="" formControlName="tipoUsuario">
         <option *ngFor="let tipo of tipos" [value]="tipo.value">
           {{ tipo.text }}
         </option>
       </select>
     </div>
-
-    <!-- <div class="cls-field">
-      <label for="">sede:</label>
+    
+<!-- 
+    <div class="cls-field">
+      <label for="">Sede:</label>
       <input
         type="text"
-        placeholder="sedeId"
+        placeholder="00-00-00"
         formControlName="sedeId"
       />
     </div>
 
     <div class="cls-field">
-      <label for="">rol:</label>
+      <label for="">Rol:</label>
       <input
         type="text"
-        placeholder="rolId"
+        placeholder="00-00-00"
         formControlName="rolId"
       />
     </div> -->
@@ -129,19 +113,13 @@
       <!--- Note that these columns can be defined in any order.
                     The actual rendered columns are set as a property on the row definition" -->
 
-      <!-- Cedula Column -->
-      <!-- <ng-container matColumnDef="isUsuario">
-        <th mat-header-cell *matHeaderCellDef>Cedula</th>
-        <td mat-cell *matCellDef="let element">{{ element.isUsuario }}</td>
-      </ng-container> -->
-
-      <!-- Nombre Column -->
+      <!-- Position Column -->
       <ng-container matColumnDef="nombre">
         <th mat-header-cell *matHeaderCellDef>Nombre</th>
         <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
       </ng-container>
 
-      <!-- Teléfono Column -->
+      <!-- Name Column -->
       <ng-container matColumnDef="telefono">
         <th mat-header-cell *matHeaderCellDef>Teléfono</th>
         <td mat-cell *matCellDef="let element">
@@ -149,13 +127,13 @@
         </td>
       </ng-container>
 
-      <!-- Nombre Column -->
-      <!-- <ng-container matColumnDef="contrasenia">
-        <th mat-header-cell *matHeaderCellDef>Contraseña</th>
-        <td mat-cell *matCellDef="let element">{{ element.contrasenia }}</td>
-      </ng-container> -->
+      <!-- Weight Column -->
+      <ng-container matColumnDef="tipoUsuario">
+        <th mat-header-cell *matHeaderCellDef>Tipo</th>
+        <td mat-cell *matCellDef="let element">{{ element.tipoUsuario }}</td>
+      </ng-container>
 
-      <!-- Fecha nacimiento Column -->
+      <!-- Symbol Column -->
       <ng-container matColumnDef="fechaNacimiento">
         <th mat-header-cell *matHeaderCellDef>Fecha nacimiento</th>
         <td mat-cell *matCellDef="let element">
@@ -163,35 +141,39 @@
         </td>
       </ng-container>
 
-      <!-- Tipo Column -->
-      <ng-container matColumnDef="tipoUsuario">
-        <th mat-header-cell *matHeaderCellDef>Tipo Usuario</th>
-        <td mat-cell *matCellDef="let element">{{ element.tipoUsuario }}</td>
+      <!-- Name Column -->
+      <ng-container matColumnDef="sedeId">
+        <th mat-header-cell *matHeaderCellDef>Sede</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.sedeId }}
+        </td>
       </ng-container>
 
-            <!-- Cedula Column -->
-            <!-- <ng-container matColumnDef="sedeId">
-              <th mat-header-cell *matHeaderCellDef>Sede</th>
-              <td mat-cell *matCellDef="let element">{{ element.sedeId }}</td>
-            </ng-container> -->
-
-                  <!-- Cedula Column -->
-      <!-- <ng-container matColumnDef="rolId">
+      <!-- Name Column -->
+      <ng-container matColumnDef="rolId">
         <th mat-header-cell *matHeaderCellDef>Rol</th>
-        <td mat-cell *matCellDef="let element">{{ element.rolId }}</td>
-      </ng-container> -->
+        <td mat-cell *matCellDef="let element">
+          {{ element.rolId }}
+        </td>
+      </ng-container>
 
       <ng-container matColumnDef="acciones">
         <th mat-header-cell *matHeaderCellDef>Acciones</th>
         <td
           mat-cell
           *matCellDef="let element"
-          style="display: flex; gap: 5px; flex-direction: column"
+          
+          style="display: flex-container; gap: 5px; flex-direction: column"
         >
-          <a class="cls-link" (click)="selectUserEdit(element)"> Editar</a>
+          <a class="cls-link" (click)="selectUserEdit(element)">
+            <button style="margin: 10px" mat-raised-button color="accent">Editar</button>
+          </a>
           <a class="cls-link" (click)="deleteUser(element.idUsuario)">
-            Eliminar</a
-          >
+            <button style="margin: 10px" mat-raised-button color="warn">Eliminar</button>
+          </a>
+          <a class="cls-link" (click)="selectUserEdit(element)">
+            <button style="margin: 10px" mat-raised-button color="accent">Detalle</button>
+          </a>
         </td>
       </ng-container>
 

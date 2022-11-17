@@ -19,11 +19,8 @@ export class CrudUsuariosComponent implements OnInit {
     // "isUsuario",
     "nombre",
     "telefono",
-    "fechaNacimiento",
-    // "contrasenia",
     "tipoUsuario",
-    // "sedeId",
-    // "rolId",
+    "fechaNacimiento",
     "acciones",
   ];
   datos: any = [];
@@ -59,17 +56,18 @@ export class CrudUsuariosComponent implements OnInit {
       // isUsuario: ["648"],
       nombre: [""],
       telefono: [""],
-      fechaNacimiento: ["2022-11-08T00:22:27.812Z"],
-      // contrasenia: [""],
       tipoUsuario: [""],
-      // sedeId: ["8765456"],
-      // rolId: ["987654345675678"],
+      fechaNacimiento: ["2022-11-08T00:22:27.812Z"],
+      contrasenia: ["111"],
+      sedeId: ["6361dc4882fb6b4b74876fa8"],
+      rolId: ["636c745607de2e3f84954c33"],
     });
   }
 
   ngOnInit(): void {
     this.getUsers();
     this.sortTipos();
+    this.postUser();
   }
 
   sortTipos(): void {
@@ -116,7 +114,7 @@ export class CrudUsuariosComponent implements OnInit {
   saveUser(): void {
     const datosUser = this.formUser.getRawValue();
     datosUser["fechaNacimiento"] = new Date(datosUser["fechaNacimiento"]);
-
+    // datosUser["telefono"] = Number(datosUser["telefono"]);
     console.log(datosUser);
 
     this.servicioBackend
@@ -136,6 +134,10 @@ export class CrudUsuariosComponent implements OnInit {
           console.log("complete");
         },
       });
+  }
+
+  postUser(): void {
+    
   }
 
   changeShowForm() {
