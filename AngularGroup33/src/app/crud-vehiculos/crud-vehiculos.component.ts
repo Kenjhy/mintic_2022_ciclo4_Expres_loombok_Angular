@@ -29,26 +29,31 @@ export class CrudVehiculosComponent implements OnInit {
     'descripcion',
     'acciones',
   ];
+
   datos = [];
 
   formVehiculos: FormGroup = new FormGroup({});
 
   tipos = [
     {
-      text: 'Propietario',
-      value: 'propietario',
+      text: 'Camion',
+      value: 'camion',
     },
     {
-      text: 'Mecánico',
-      value: 'mecanico',
+      text: 'Buseta',
+      value: 'Buseta',
     },
     {
-      text: 'Jefe de operaciones',
-      value: 'jefe-operaciones',
+      text: 'Carro Particular',
+      value: 'carro-Particular',
     },
     {
-      text: 'Administrador',
-      value: 'admin',
+      text: 'Camioneta',
+      value: 'camioneta',
+    },
+    {
+      text: 'Deportivo',
+      value: 'deportivo',
     },
   ];
 

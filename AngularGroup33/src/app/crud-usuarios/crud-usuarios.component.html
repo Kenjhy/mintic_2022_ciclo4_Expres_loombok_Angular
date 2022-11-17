@@ -58,7 +58,7 @@
     <div class="cls-field">
       <label for="">Tipo:</label>
       <select name="" id="" formControlName="tipoUsuario">
-        <option *ngFor="let tipo of tipos" [value]="tipo.value">
+        <option *ngFor="let tipo of tipos" [value]="tipo.text">
           {{ tipo.text }}
         </option>
       </select>
