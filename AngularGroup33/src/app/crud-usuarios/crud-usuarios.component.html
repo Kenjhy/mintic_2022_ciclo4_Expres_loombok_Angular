@@ -3,16 +3,15 @@
     style="
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: flex-end;
       gap: 30px;
     "
   >
-    <h3>Gestion Usuarios</h3>
 
     <mat-form-field class="example-form-field" appearance="outline">
       <mat-label>Buscar</mat-label>
-      <input matInput type="text" [(ngModel)]="value"/>
-      <button
+      <input matInput type="text" [(ngModel)]="value" />
+      <button 
         *ngIf="value"
         matSuffix
         mat-icon-button
@@ -23,16 +22,20 @@
       </button>
     </mat-form-field>
 
-    <span
+    <mat-icon
       class="cls-button-filter"
-      color="primary"
       (click)="filter()"
       style="position: relative; top: -10px"
-
-      (click)="openDialogAdd()"
-      >+</span
+      >filter_list</mat-icon
     >
-   <!--changeShowForm--> 
+
+    <mat-icon
+      class="cls-button-circle"
+      style="position: relative; top: -10px"
+      (click)="openDialogAdd()"
+      >add_to_photos</mat-icon
+    >
+    <!--changeShowForm-->
   </div>
 
   <div>
@@ -93,14 +96,14 @@
         >
           <a class="cls-link" (click)="openDialogEdit(element)">
             <button
-            class="cls-button-table-edit"
-            style="margin: 10px"
-            mat-raised-button
-            color="accent"
-          >
-            Editar
-            <mat-icon>edit</mat-icon>
-          </button>
+              class="cls-button-table-edit"
+              style="margin: 10px"
+              mat-raised-button
+              color="accent"
+            >
+              Editar
+              <mat-icon>edit</mat-icon>
+            </button>
           </a>
           <a class="cls-link" (click)="deleteUser(element.isUsuario)">
             <button
@@ -113,7 +116,11 @@
               <mat-icon>delete_sweep</mat-icon>
             </button>
           </a>
-          <a class="cls-link" (click)="showToast()" (click)="selectUserEdit(element)">
+          <a
+            class="cls-link"
+            (click)="showToast()"
+            (click)="selectUserEdit(element)"
+          >
             <button
               class="cls-button-table-detail"
               style="margin: 10px"

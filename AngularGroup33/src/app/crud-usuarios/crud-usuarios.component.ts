@@ -51,7 +51,6 @@ export class CrudUsuariosComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
-    this.postUser();
   }
 
   showToast(){
@@ -74,8 +73,6 @@ export class CrudUsuariosComponent implements OnInit {
       }
     );
   }
-
-  postUser(): void {}
 
   changeShowForm() {
     this.modeForm = "adicion";

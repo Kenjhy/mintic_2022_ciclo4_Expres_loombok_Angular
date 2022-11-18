@@ -3,11 +3,10 @@
     style="
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: flex-end;
       gap: 30px;
     "
   >
-    <h3>Gestion Vehiculos</h3>
 
     <mat-form-field class="example-form-field" appearance="outline">
       <mat-label>Buscar</mat-label>
@@ -23,104 +22,24 @@
       </button>
     </mat-form-field>
 
-    <span
+    <mat-icon
+      class="cls-button-filter"
+      (click)="filter()"
+      style="position: relative; top: -10px"
+      >filter_list</mat-icon
+    >
+
+    <mat-icon
       class="cls-button-circle"
       style="position: relative; top: -10px"
-      (click)="changeShowForm()"
-      >+</span
+      (click)="openDialogAdd()"
+      >add_to_photos</mat-icon
     >
-  </div>
-
-  <div class="cls-form" [formGroup]="formVehiculos" *ngIf="showForm">
-    <div class="cls-field">
-      <label for="">Numero de Placa:</label>
-      <input type="text" formControlName="placa" />
-    </div>
-
-    <div class="cls-field">
-      <label for="">Tipo de Vehiculo:</label>
-      <select name="" id="" formControlName="tipo">
-        <option *ngFor="let tipo of tipos" [value]="tipo.value">
-          {{ tipo.text }}
-        </option>
-      </select>
-    </div>
-
-    <div class="cls-field">
-      <label for="">Marca del Vehiculo:</label>
-      <select
-        type="text"
-        formControlName="marca"
-      >
-        <option *ngFor="let car of cars" [value]="car.value">
-          {{ car.value }}
-        </option>
-      </select>
-    </div>
-
-    <div class="cls-field">
-      <label for="">Modelo del Vehiculo:</label>
-      <input type="text" formControlName="modelo" />
-    </div>
-
-    <div class="cls-field">
-      <label for="tentacles">Capacidad de Pasajeros:</label>
-      <input
-        type="string"
-        placeholder="00-00"
-        formControlName="capacidad_pasajeros"
-        id="tentacles" name="tentacles"
-       min="1" max="60"
-      />
-    </div>
-
-    <div class="cls-field">
-      <label for="tentacles">Cilindraje del Vehiculo:</label>
-      <input type="string" formControlName="cilindraje" 
-      placeholder="00000"
-      id="tentacles" name="tentacles"
-       min="125" max="10000" />
-    </div>
-
-    <div class="cls-field">
-      <label for="">Pais Origen del Vehiculo:</label>
-      <input type="text" formControlName="pais" />
-    </div>
-
-    <div class="cls-field">
-      <label for="">Descripcion del Vehiculo:</label>
-      <input type="text" formControlName="descripcion" />
-    </div>
-
-    <button
-      *ngIf="modeForm == 'adicion'"
-      (click)="saveVehiculos()"
-      style="color: #fff !important"
-      mat-button
-      color="primary"
-    >
-      Agregar
-      <mat-icon>note_add</mat-icon>
-    </button>
-
-    <button
-      *ngIf="modeForm == 'edicion'"
-      (click)="updateVehiculos()"
-      style="color: #fff !important"
-      mat-button
-      color="primary"
-    >
-      Guardar
-      <mat-icon>save_alt</mat-icon>
-    </button>
-  </div>
-
-  <div *ngIf="showForm">
-    <hr />
+    <!--changeShowForm-->
   </div>
 
   <div>
-    <table mat-table [dataSource]="datos" class="mat-elevation-z8">
+    <table mat-table [dataSource]="datosVehiculos" class="mat-elevation-z8">
       <!--- Note that these columns can be defined in any order.
                       The actual rendered columns are set as a property on the row definition" -->
 
@@ -181,7 +100,7 @@
           *matCellDef="let element"
           style="display: flex-container; gap: 5px; flex-direction: column"
         >
-          <a class="cls-link" (click)="selectVehiculoEdit(element)">
+          <a class="cls-link" (click)="openDialogEdit(element)">
             <button
               class="cls-button-table-edit"
               style="margin: 10px"
