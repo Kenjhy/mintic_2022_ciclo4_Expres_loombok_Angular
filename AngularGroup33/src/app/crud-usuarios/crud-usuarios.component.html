@@ -92,12 +92,28 @@
           style="display: flex-container; gap: 5px; flex-direction: column"
         >
           <a class="cls-link" (click)="openDialogEdit(element)">
-            <button style="margin: 10px" mat-raised-button color="accent">Editar</button>
+            <button
+            class="cls-button-table-edit"
+            style="margin: 10px"
+            mat-raised-button
+            color="accent"
+          >
+            Editar
+            <mat-icon>edit</mat-icon>
+          </button>
           </a>
           <a class="cls-link" (click)="deleteUser(element.isUsuario)">
-            <button style="margin: 10px" mat-raised-button color="warn">Eliminar</button>
+            <button
+              class="cls-button-table-delete"
+              style="margin: 10px"
+              mat-raised-button
+              color="warn"
+            >
+              Eliminar
+              <mat-icon>delete_sweep</mat-icon>
+            </button>
           </a>
-          <a class="cls-link" (click)="selectUserEdit(element)">
+          <a class="cls-link" (click)="showToast()" (click)="selectUserEdit(element)">
             <button
               class="cls-button-table-detail"
               style="margin: 10px"

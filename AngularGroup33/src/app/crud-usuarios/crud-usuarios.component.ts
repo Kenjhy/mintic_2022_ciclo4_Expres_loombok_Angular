@@ -54,17 +54,9 @@ export class CrudUsuariosComponent implements OnInit {
     this.postUser();
   }
 
-  // sortTipos(): void {
-  //   this.tipos.sort(function (a, b) {
-  //     if (a.text < b.text) {
-  //       return -1;
-  //     }
-  //     if (a.text > b.text) {
-  //       return 1;
-  //     }
-  //     return 0;
-  //   });
-  // }
+  showToast(){
+    Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, title: 'Success!', text: ' Detalle Consultado  ', icon: 'success', });
+      }
 
   seleccionarNombre(nombreNuevo: string): void {
     this.nombreUsuarioSeleccionado = nombreNuevo;

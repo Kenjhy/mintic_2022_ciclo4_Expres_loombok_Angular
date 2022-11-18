@@ -124,17 +124,9 @@ export class CrudVehiculosComponent implements OnInit {
     });
   }
 
-  // cambiarTitulo(): void {
-  //   this.titulo = 'He cambiado de nombre, ahora me llamo de Maicol';
-  // }
-
-  // focusBuscar(): void {
-  //   console.log('hizo focus');
-  // }
-
-  // blurBuscar(): void {
-  //   console.log('salio del focus');
-  // }
+  showToast(){
+    Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, title: 'Success!', text: 'El detalle del usuario se ha consultado correctamente', icon: 'success', });
+      }
 
   seleccionarNombre(nombreNuevo: string): void {
     this.nombrevehiculosSeleccionado = nombreNuevo;

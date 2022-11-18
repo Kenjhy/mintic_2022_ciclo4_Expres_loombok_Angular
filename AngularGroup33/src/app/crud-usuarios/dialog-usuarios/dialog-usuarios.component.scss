@@ -1,14 +1,27 @@
 
 .cls-form {
-    // display: inline-flex;
-    // gap: 20px;
-    // margin-bottom: 10px;
-    // flex-wrap: wrap;
-    // margin-bottom: 30px;
+    font-size: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+
 
 .cls-field {
     gap: 10px;
-    display: flex;
+    justify-content: center;
+}
+
+.cls-agregar{
+    padding: 20px;
+}
+
+.cls-guardar{
+    padding: 20px;
+}
+
+.cls-Cancel{
+    margin-right: 15px;
+    margin-top: 20px;
+    padding: 20px;
 }
 
 button {
