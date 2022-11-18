@@ -32,84 +32,10 @@
     <span
       class="cls-button-circle"
       style="position: relative; top: -10px"
-      (click)="changeShowForm()"
+      (click)="openDialog()"
       >+</span
     >
-  </div>
-
-  <div class="cls-form" [formGroup]="formUser" *ngIf="showForm">
-    <div class="cls-field">
-      <label for="">Nombre:</label>
-      <input type="text" formControlName="nombre" />
-    </div>
-
-    <div class="cls-field">
-      <label for="">Teléfono:</label>
-      <input
-        type="number"
-        placeholder="+57 00 00 00"
-        formControlName="telefono"
-      />
-    </div>
-
-    <div class="cls-field">
-      <label for="">Fecha de nacimiento:</label>
-      <input type="date" formControlName="fechaNacimiento" />
-    </div>
-
-    <div class="cls-field">
-      <label for="">Tipo:</label>
-      <select name="" id="" formControlName="tipoUsuario">
-        <option *ngFor="let tipo of tipos" [value]="tipo.value">
-          {{ tipo.text }}
-        </option>
-      </select>
-    </div>
-
-    <!-- 
-    <div class="cls-field">
-      <label for="">Sede:</label>
-      <input
-        type="text"
-        placeholder="00-00-00"
-        formControlName="sedeId"
-      />
-    </div>
-
-    <div class="cls-field">
-      <label for="">Rol:</label>
-      <input
-        type="text"
-        placeholder="00-00-00"
-        formControlName="rolId"
-      />
-    </div> -->
-
-    <button
-      *ngIf="modeForm == 'adicion'"
-      (click)="saveUser()"
-      style="color: #fff !important"
-      mat-button
-      color="primary"
-    >
-    Agregar
-    <mat-icon>note_add</mat-icon>
-    </button>
-
-    <button
-      *ngIf="modeForm == 'edicion'"
-      (click)="updateUser()"
-      style="color: #fff !important"
-      mat-button
-      color="primary"
-    >
-      Guardar
-      <mat-icon>save_alt</mat-icon>
-    </button>
-  </div>
-
-  <div *ngIf="showForm">
-    <hr />
+    <!-- changeShowForm -->
   </div>
 
   <div>

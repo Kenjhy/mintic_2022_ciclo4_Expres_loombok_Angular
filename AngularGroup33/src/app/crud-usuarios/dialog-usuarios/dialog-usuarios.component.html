@@ -1,0 +1,51 @@
+<div class="cls-form" [formGroup]="formDialog">
+  <div class="cls-field">
+    <label for="">Nombre:</label>
+    <input type="text" formControlName="nombre" />
+  </div>
+
+  <div class="cls-field">
+    <label for="">Teléfono:</label>
+    <input
+      type="number"
+      placeholder="+57 00 00 00"
+      formControlName="telefono"
+    />
+  </div>
+
+  <div class="cls-field">
+    <label for="">Fecha de nacimiento:</label>
+    <input type="date" formControlName="fechaNacimiento" />
+  </div>
+
+  <div class="cls-field">
+    <label for="">Tipo:</label>
+    <select name="" id="" formControlName="tipoUsuario">
+      <option *ngFor="let tipo of tipos" [value]="tipo.value">
+        {{ tipo.text }}
+      </option>
+    </select>
+  </div>
+
+  <button
+    *ngIf="modeForm == 'adicion'"
+    (click)="saveUser()"
+    style="color: #fff !important"
+    mat-button
+    color="primary"
+  >
+    Agregar
+    <!-- <mat-icon>note_add</mat-icon> -->
+  </button>
+
+  <button
+    *ngIf="modeForm == 'edicion'"
+    (click)="updateUser()"
+    style="color: #fff !important"
+    mat-button
+    color="primary"
+  >
+    Guardar
+    <!-- <mat-icon>save_alt</mat-icon> -->
+  </button>
+</div>
