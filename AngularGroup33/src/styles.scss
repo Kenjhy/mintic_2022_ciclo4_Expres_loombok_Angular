@@ -10,13 +10,31 @@ body {
 }
 
 button {
+    border-radius: 70px;
+    background-color: rgb(9, 255, 30) !important;
+    padding: 50px;
+}
+
+.cls-button-table-edit {
     border-radius: 50px;
-    background-color: blue !important;
+    background-color: rgb(63, 218, 205) !important;
+    padding: 30px;
+}
+
+.cls-button-table-delete {
+    border-radius: 50px;
+    background-color: rgb(255, 0, 64) !important;
+    padding: 30px;
+}
+
+.cls-button-table-detail {
+    border-radius: 50px;
+    background-color: rgb(116, 9, 255) !important;
     padding: 30px;
 }
 
 .cls-button-circle {
-    background: #9fa7f1;
+    background: #1a2ff1;
     color: #fff;
     padding: 7px;
     border-radius: 50%;

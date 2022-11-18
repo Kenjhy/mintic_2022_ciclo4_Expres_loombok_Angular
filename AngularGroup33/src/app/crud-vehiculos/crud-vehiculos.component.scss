@@ -39,6 +39,11 @@
         display: flex;
     }
 
+    select {
+        background: #fd8700;
+        color: #f0f9fa;
+    }
+
     button {
         color: #fff !important;
         height: 21px;
@@ -54,3 +59,4 @@
     text-underline-position: under;
     cursor: pointer;
 }
+

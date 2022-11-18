@@ -42,7 +42,7 @@ export class CrudUsuariosComponent implements OnInit {
       nombre: [""],
       telefono: [""],
       tipoUsuario: [""],
-      fechaNacimiento: ["2022-11-08T00:22:27.812Z"],
+      fechaNacimiento: [""],
       contrasenia: ["111"],
       sedeId: ["6361dc4882fb6b4b74876fa8"],
       rolId: ["636c745607de2e3f84954c33"],
@@ -95,6 +95,7 @@ export class CrudUsuariosComponent implements OnInit {
     );
   }
 
+
   postUser(): void {}
 
   changeShowForm() {
@@ -117,7 +118,7 @@ export class CrudUsuariosComponent implements OnInit {
         this.servicioBackend.deleteData("usuarios", code).subscribe({
           next: (data) => {
             this.getUsers();
-            Swal.fire("Ok!", "Eliminado", "success");
+            Swal.fire("Ok!", "Eliminado el Usuario", "success");
           },
           error: (error) => {
             console.log(error);
