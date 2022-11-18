@@ -61,7 +61,8 @@ export class DialogUsuariosComponent implements OnInit {
   }
 
   saveUser(): void {
-    const datosUser = this.formUserDialog.getRawValue();
+    const datosUser = this.formUserDialog.getRawValue(); 
+    
     datosUser["fechaNacimiento"] = new Date(datosUser["fechaNacimiento"]);
     // datosUser["telefono"] = Number(datosUser["telefono"]);
     console.log(datosUser);
