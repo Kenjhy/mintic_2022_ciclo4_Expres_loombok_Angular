@@ -11,7 +11,7 @@ body {
 
 button {
     border-radius: 70px;
-    background-color: rgb(9, 255, 30) !important;
+    background-color: rgb(181, 92, 255) !important;
     padding: 50px;
 }
 
@@ -33,9 +33,31 @@ button {
     padding: 30px;
 }
 
+.cls-button-filter{
+    background: #ffffff;
+    color: rgb(77, 118, 255);
+    padding: 5px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cls-avatar {
+    height: 40px;
+}
+
+.cls-menu {
+    display: inline-block;
+    margin: 0 300px;
+}
+
 .cls-button-circle {
-    background: #1a2ff1;
-    color: #fff;
+    background: #ffffff;
+    color: rgb(243, 12, 243);
     padding: 7px;
     border-radius: 50%;
     width: 20px;

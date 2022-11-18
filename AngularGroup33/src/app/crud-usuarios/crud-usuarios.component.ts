@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { RequestBackendService } from "../request-backend.service";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import Swal from "sweetalert2";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogUsuariosComponent } from "./dialog-usuarios/dialog-usuarios.component";
@@ -39,9 +39,9 @@ export class CrudUsuariosComponent implements OnInit {
   ) {
     this.formUser = this.fb.group({
       // isUsuario: ["648"],
-      nombre: [""],
+      nombre: ["", Validators.required],
       telefono: [""],
-      tipoUsuario: [""],
+      tipoUsuario: ["", Validators.required, Validators.minLength(10)],
       fechaNacimiento: [""],
       contrasenia: ["111"],
       sedeId: ["6361dc4882fb6b4b74876fa8"],
@@ -51,32 +51,11 @@ export class CrudUsuariosComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
-    this.postUser();
   }
 
-  // sortTipos(): void {
-  //   this.tipos.sort(function (a, b) {
-  //     if (a.text < b.text) {
-  //       return -1;
-  //     }
-  //     if (a.text > b.text) {
-  //       return 1;
-  //     }
-  //     return 0;
-  //   });
-  // }
-
-  // cambiarTitulo(): void {
-  //   this.titulo = 'He cambiado de nombre, ahora me llamo de Maicol';
-  // }
-
-  focusBuscar(): void {
-    console.log("hizo focus");
-  }
-
-  blurBuscar(): void {
-    console.log("salio del focus");
-  }
+  showToast(){
+    Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, title: 'Success!', text: ' Detalle Consultado  ', icon: 'success', });
+      }
 
   seleccionarNombre(nombreNuevo: string): void {
     this.nombreUsuarioSeleccionado = nombreNuevo;
@@ -94,9 +73,6 @@ export class CrudUsuariosComponent implements OnInit {
       }
     );
   }
-
-
-  postUser(): void {}
 
   changeShowForm() {
     this.modeForm = "adicion";
@@ -138,7 +114,21 @@ export class CrudUsuariosComponent implements OnInit {
     this.formUser.patchValue(user);
   }
 
-  //updateUser(): void {}
+  filter() {
+    this.servicioBackend
+      .getDataFilter("usuarios", this.value, "nombre")
+      .subscribe(
+        (data) => {
+          console.log(data);
+          this.datos = data;
+        },
+
+        (error) => {
+          console.log("Error: " + error);
+        }
+      );
+  }
+
 
   openDialogAdd() {
     const dialogRef = this.dialog.open(DialogUsuariosComponent, {

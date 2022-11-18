@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { RequestBackendService } from "../request-backend.service";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import Swal from "sweetalert2";
+import { MatDialog } from "@angular/material/dialog";
+import { format } from "date-fns";
+import { DialogUsuariosComponent } from "../crud-usuarios/dialog-usuarios/dialog-usuarios.component";
 
 @Component({
   selector: "crud-vehiculos",
@@ -10,11 +13,8 @@ import Swal from "sweetalert2";
 })
 export class CrudVehiculosComponent implements OnInit {
   titulo = "Hola";
-
   modeForm = "adicion";
-
   value = "";
-
   edad = 0;
   nombrevehiculosSeleccionado = "";
 
@@ -30,73 +30,17 @@ export class CrudVehiculosComponent implements OnInit {
     "acciones",
   ];
 
-  datos = [];
+  datosVehiculos: any = [];
 
   formVehiculos: FormGroup = new FormGroup({});
-
-  tipos = [
-    {
-      text: "Camion",
-      value: "camion",
-    },
-    {
-      text: "Buseta",
-      value: "Buseta",
-    },
-    {
-      text: "Carro Particular",
-      value: "carro-Particular",
-    },
-    {
-      text: "Camioneta",
-      value: "camioneta",
-    },
-    {
-      text: "Deportivo",
-      value: "deportivo",
-    },
-  ];
-
-  cars = [
-    {
-      text: "mazda",
-      value: "Mazda / Familia",
-    },
-    {
-      text: "chevrolet",
-      value: "Chevrolet / Todoterreno",
-    },
-    {
-      text: "audi",
-      value: "Audi / Todoterreno",
-    },
-    {
-      text: "kia",
-      value: "KIA / Picanto",
-    },
-    {
-      text: "BMW",
-      value: "BMW / Sport3",
-    },
-    {
-      text: "mercedez",
-      value: "Mercedez-Benz / Crucero",
-    },
-    {
-      text: "ford",
-      value: "Ford / RANGER",
-    },
-  ];
 
   showForm = false;
 
   constructor(
     private servicioBackend: RequestBackendService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private dialog: MatDialog
   ) {
-    this.getVehiculos();
-    this.sortTipos();
-
     this.formVehiculos = this.fb.group({
       placa: [""],
       tipo: [""],
@@ -110,31 +54,21 @@ export class CrudVehiculosComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
-
-  sortTipos(): void {
-    this.tipos.sort(function (a, b) {
-      if (a.text < b.text) {
-        return -1;
-      }
-      if (a.text > b.text) {
-        return 1;
-      }
-      return 0;
-    });
+  ngOnInit(): void {
+    this.getVehiculos();
   }
 
-  // cambiarTitulo(): void {
-  //   this.titulo = 'He cambiado de nombre, ahora me llamo de Maicol';
-  // }
-
-  // focusBuscar(): void {
-  //   console.log('hizo focus');
-  // }
-
-  // blurBuscar(): void {
-  //   console.log('salio del focus');
-  // }
+  showToast() {
+    Swal.fire({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      title: "Success!",
+      text: "El detalle del usuario se ha consultado correctamente",
+      icon: "success",
+    });
+  }
 
   seleccionarNombre(nombreNuevo: string): void {
     this.nombrevehiculosSeleccionado = nombreNuevo;
@@ -144,39 +78,13 @@ export class CrudVehiculosComponent implements OnInit {
     this.servicioBackend.getData("vehiculos").subscribe(
       (data) => {
         console.log(data);
-        this.datos = data;
+        this.datosVehiculos = data;
       },
 
       (error) => {
         console.log("Error: " + error);
       }
     );
-  }
-
-  saveVehiculos(): void {
-    const datosVehicle = this.formVehiculos.getRawValue();
-    console.log(datosVehicle);
-
-    this.servicioBackend
-      .postData("vehiculos", JSON.stringify(datosVehicle))
-      .subscribe({
-        next: (data) => {
-          console.log(data);
-          this.getVehiculos();
-          Swal.fire(
-            "vehiculo creado",
-            "Todo ha salido muy bien con la creación del vehiculo",
-            "success"
-          );
-        },
-        error: (error) => {
-          console.log(error);
-          Swal.fire("vehiculo NO creado", "Ocurrió un error", "error");
-        },
-        complete: () => {
-          console.log("complete");
-        },
-      });
   }
 
   changeShowForm() {
@@ -219,16 +127,56 @@ export class CrudVehiculosComponent implements OnInit {
     this.formVehiculos.patchValue(vehicle);
   }
 
-  updateVehiculos(): void {
-    const datosVehicle = this.formVehiculos.getRawValue();
-    console.log(datosVehicle);
+  filter() {
     this.servicioBackend
-      .postData("vehiculos", JSON.stringify(datosVehicle))
-      .subscribe({
-        next: (data) => {
+      .getDataFilter("vehiculos", this.value, "placa")
+      .subscribe(
+        (data) => {
           console.log(data);
-          this.getVehiculos();
+          this.datosVehiculos = data;
         },
-      });
+
+        (error) => {
+          console.log("Error: " + error);
+        }
+      );
+  }
+
+
+  openDialogAdd() {
+    const dialogRef = this.dialog.open(DialogUsuariosComponent, {
+      // width: "330px",
+      // height: "400px",
+      data: {
+        modeForm: "adicion",
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        this.getVehiculos();
+      }
+    });
+  }
+
+  openDialogEdit(user?: string) {
+    const dialogRef = this.dialog.open(DialogUsuariosComponent, {
+      // width: "330px",
+      // height: "400px",
+      data: {
+        user: user,
+        modeForm: "edicion",
+      },
+    });
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        this.getVehiculos();
+      }
+    });
+  }
+  setaFormat(dateString: string): string {
+    const date = new Date(dateString);
+    const newDate = format(date, "d-LLL-yyyy");
+    return newDate;
   }
 }
