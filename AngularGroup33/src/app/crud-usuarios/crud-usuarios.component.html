@@ -7,17 +7,11 @@
       gap: 30px;
     "
   >
-  <h3>Gestion Usuarios</h3>
+    <h3>Gestion Usuarios</h3>
 
     <mat-form-field class="example-form-field" appearance="outline">
       <mat-label>Buscar</mat-label>
-      <input
-        matInput
-        type="text"
-        [(ngModel)]="value"
-        (focus)="focusBuscar()"
-        (blur)="blurBuscar()"
-      />
+      <input matInput type="text" [(ngModel)]="value"/>
       <button
         *ngIf="value"
         matSuffix
@@ -30,8 +24,11 @@
     </mat-form-field>
 
     <span
-      class="cls-button-circle"
+      class="cls-button-filter"
+      color="primary"
+      (click)="filter()"
       style="position: relative; top: -10px"
+
       (click)="openDialogAdd()"
       >+</span
     >

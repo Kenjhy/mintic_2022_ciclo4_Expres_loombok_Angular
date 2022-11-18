@@ -33,6 +33,26 @@ button {
     padding: 30px;
 }
 
+.cls-button-filter{
+    background: #11fc4c;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cls-avatar {
+    height: 40px;
+}
+
+.cls-menu {
+    display: inline-block;
+    margin: 0 300px;
+}
+
 .cls-button-circle {
     background: #1a2ff1;
     color: #fff;

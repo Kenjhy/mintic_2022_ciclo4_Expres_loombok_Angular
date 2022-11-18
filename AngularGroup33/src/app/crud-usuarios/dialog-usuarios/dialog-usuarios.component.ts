@@ -32,7 +32,6 @@ export class DialogUsuariosComponent implements OnInit {
       sedeId: ["6361dc4882fb6b4b74876fa8"],
       rolId: ["636c745607de2e3f84954c33"],
     });
-
     this.sortTipos();
   }
   ngOnInit(): void {}
@@ -90,6 +89,8 @@ export class DialogUsuariosComponent implements OnInit {
         },
       });
   }
+
+
   updateUser(): void {
     const newData = this.formUserDialog.getRawValue();
     newData["fechaNacimiento"] = new Date(newData["fechaNacimiento"]);
@@ -137,4 +138,5 @@ export class DialogUsuariosComponent implements OnInit {
       value: "admin",
     },
   ];
+
 }
