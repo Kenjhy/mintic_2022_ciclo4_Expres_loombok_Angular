@@ -148,6 +148,13 @@ export class CrudUsuariosComponent implements OnInit {
         modeForm : 'adicion'
       },
     });
+
+    dialogRef.afterClosed().subscribe((data)=>{
+      if(data){
+        this.getUsers();
+      }
+    });
+
   }
 
   openDialogEdit(user?: string) {
@@ -156,8 +163,13 @@ export class CrudUsuariosComponent implements OnInit {
       // height: "400px",
       data: {
         user: user,
-       modeForm : 'edicion' 
+        modeForm : 'edicion' 
       },
+    });
+    dialogRef.afterClosed().subscribe((data)=>{
+      if(data){
+        this.getUsers();
+      }
     });
   }
 setaFormat(dateString: string): string{
