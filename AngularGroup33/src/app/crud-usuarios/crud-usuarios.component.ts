@@ -3,7 +3,8 @@ import { RequestBackendService } from "../request-backend.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import Swal from "sweetalert2";
 import { MatDialog } from "@angular/material/dialog";
-import { keyframes } from "@angular/animations";
+import { DialogUsuariosComponent } from "./dialog-usuarios/dialog-usuarios.component";
+import { format } from 'date-fns';
 
 @Component({
   selector: "crud-usuarios",
@@ -29,25 +30,6 @@ export class CrudUsuariosComponent implements OnInit {
 
   formUser: FormGroup = new FormGroup({});
 
-  tipos = [
-    {
-      text: "Propietario",
-      value: "propietario",
-    },
-    {
-      text: "Mecánico",
-      value: "mecanico",
-    },
-    {
-      text: "Jefe de operaciones",
-      value: "jefe de operaciones",
-    },
-    {
-      text: "Administrador",
-      value: "admin",
-    },
-  ];
-
   showForm = false;
 
   constructor(
@@ -69,20 +51,20 @@ export class CrudUsuariosComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
-    this.sortTipos();
+    this.postUser();
   }
 
-  sortTipos(): void {
-    this.tipos.sort(function (a, b) {
-      if (a.text < b.text) {
-        return -1;
-      }
-      if (a.text > b.text) {
-        return 1;
-      }
-      return 0;
-    });
-  }
+  // sortTipos(): void {
+  //   this.tipos.sort(function (a, b) {
+  //     if (a.text < b.text) {
+  //       return -1;
+  //     }
+  //     if (a.text > b.text) {
+  //       return 1;
+  //     }
+  //     return 0;
+  //   });
+  // }
 
   seleccionarNombre(nombreNuevo: string): void {
     this.nombreUsuarioSeleccionado = nombreNuevo;
@@ -101,35 +83,7 @@ export class CrudUsuariosComponent implements OnInit {
     );
   }
 
-  saveUser(): void {
-    const datosUser = this.formUser.getRawValue();
-    datosUser["fechaNacimiento"] = new Date(datosUser["fechaNacimiento"]);
-    // datosUser["telefono"] = Number(datosUser["telefono"]);
-    console.log(datosUser);
-
-    this.servicioBackend
-      .postData("usuarios", JSON.stringify(datosUser))
-      .subscribe({
-        next: (data) => {
-          console.log(data);
-          this.getUsers();
-          Swal.fire(
-            "Usuario creado",
-            "Todo ha salido muy bien con la creación del usuario",
-            "success"
-          );
-        },
-
-        error: (error) => {
-          console.log(error);
-          Swal.fire("Usuario NO creado", "Ocurrió un error", "error");
-        },
-
-        complete: () => {
-          console.log("complete");
-        },
-      });
-  }
+  postUser(): void {}
 
   changeShowForm() {
     this.modeForm = "adicion";
@@ -137,7 +91,7 @@ export class CrudUsuariosComponent implements OnInit {
   }
 
   deleteUser(code: string): void {
-    console.log(code);
+    //   console.log(code);
 
     Swal.fire({
       title: "¿Está seguro de eliminar el usuario?",
@@ -171,8 +125,6 @@ export class CrudUsuariosComponent implements OnInit {
     this.formUser.patchValue(user);
   }
 
-  updateUser(): void {}
-
   filter() {
     this.servicioBackend
       .getDataFilter("usuarios", this.value, "nombre")
@@ -187,4 +139,48 @@ export class CrudUsuariosComponent implements OnInit {
         }
       );
   }
+
+
+  openDialogAdd() {
+    const dialogRef = this.dialog.open(DialogUsuariosComponent, {
+      // width: "330px",
+      // height: "400px",
+      data: {
+        modeForm : 'adicion'
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((data)=>{
+      if(data){
+        this.getUsers();
+      }
+    });
+
+  }
+
+  openDialogEdit(user?: string) {
+    const dialogRef = this.dialog.open(DialogUsuariosComponent, {
+      // width: "330px",
+      // height: "400px",
+      data: {
+        user: user,
+        modeForm : 'edicion' 
+      },
+    });
+    dialogRef.afterClosed().subscribe((data)=>{
+      if(data){
+        this.getUsers();
+      }
+    });
+  }
+setaFormat(dateString: string): string{
+  const date = new Date(dateString);
+  const newDate = format(date, 'd-LLL-yyyy');
+  return newDate;
 }
+  }
+
+// function setaFormat(dateString: any, str: any) {
+//   throw new Error("Function not implemented.");
+// }
+
