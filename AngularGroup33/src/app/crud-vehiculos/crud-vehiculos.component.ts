@@ -1,50 +1,90 @@
-import { Component, OnInit } from '@angular/core';
-import { RequestBackendService } from '../request-backend.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import Swal from 'sweetalert2';
+import { Component, OnInit } from "@angular/core";
+import { RequestBackendService } from "../request-backend.service";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import Swal from "sweetalert2";
 
 @Component({
-  selector: 'crud-vehiculos',
-  templateUrl: './crud-vehiculos.component.html',
-  styleUrls: ['./crud-vehiculos.component.scss'],
+  selector: "crud-vehiculos",
+  templateUrl: "./crud-vehiculos.component.html",
+  styleUrls: ["./crud-vehiculos.component.scss"],
 })
 export class CrudVehiculosComponent implements OnInit {
-  titulo = 'Hola';
+  titulo = "Hola";
 
-  modeForm = 'adicion';
+  modeForm = "adicion";
 
-  value = '';
+  value = "";
 
   edad = 0;
-  nombreUsuarioSeleccionado = '';
+  nombrevehiculosSeleccionado = "";
 
   displayedColumns: string[] = [
-    'nombre',
-    'telefono',
-    'tipoUsuario',
-    'fechaNacimiento',
-    'acciones',
+    "placa",
+    "tipo",
+    "marca",
+    "modelo",
+    "capacidad_pasajeros",
+    "cilindraje",
+    "pais",
+    "descripcion",
+    "acciones",
   ];
+
   datos = [];
 
-  formUser: FormGroup = new FormGroup({});
+  formVehiculos: FormGroup = new FormGroup({});
 
   tipos = [
     {
-      text: 'Propietario',
-      value: 'propietario',
+      text: "Camion",
+      value: "camion",
     },
     {
-      text: 'Mecánico',
-      value: 'mecanico',
+      text: "Buseta",
+      value: "Buseta",
     },
     {
-      text: 'Jefe de operaciones',
-      value: 'jefe-operaciones',
+      text: "Carro Particular",
+      value: "carro-Particular",
     },
     {
-      text: 'Administrador',
-      value: 'admin',
+      text: "Camioneta",
+      value: "camioneta",
+    },
+    {
+      text: "Deportivo",
+      value: "deportivo",
+    },
+  ];
+
+  cars = [
+    {
+      text: "mazda",
+      value: "Mazda / Familia",
+    },
+    {
+      text: "chevrolet",
+      value: "Chevrolet / Todoterreno",
+    },
+    {
+      text: "audi",
+      value: "Audi / Todoterreno",
+    },
+    {
+      text: "kia",
+      value: "KIA / Picanto",
+    },
+    {
+      text: "BMW",
+      value: "BMW / Sport3",
+    },
+    {
+      text: "mercedez",
+      value: "Mercedez-Benz / Crucero",
+    },
+    {
+      text: "ford",
+      value: "Ford / RANGER",
     },
   ];
 
@@ -54,20 +94,23 @@ export class CrudVehiculosComponent implements OnInit {
     private servicioBackend: RequestBackendService,
     private fb: FormBuilder
   ) {
-    this.getUsers();
+    this.getVehiculos();
     this.sortTipos();
 
-    this.formUser = this.fb.group({
-      nombre: [''],
-      telefono: [''],
-      tipoUsuario: [''],
-      fechaNacimiento: ['2022-11-08T00:22:27.812Z'],
-      contrasenia: ['111'],
-      sedeId: ['63557cfb71cf34a13bd99ad7'],
+    this.formVehiculos = this.fb.group({
+      placa: [""],
+      tipo: [""],
+      marca: [""],
+      modelo: [""],
+      capacidad_pasajeros: [""],
+      cilindraje: [""],
+      pais: [""],
+      descripcion: [""],
+      usuarioId: ["222"],
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   sortTipos(): void {
     this.tipos.sort(function (a, b) {
@@ -85,98 +128,107 @@ export class CrudVehiculosComponent implements OnInit {
   //   this.titulo = 'He cambiado de nombre, ahora me llamo de Maicol';
   // }
 
-  focusBuscar(): void {
-    console.log('hizo focus');
-  }
+  // focusBuscar(): void {
+  //   console.log('hizo focus');
+  // }
 
-  blurBuscar(): void {
-    console.log('salio del focus');
-  }
+  // blurBuscar(): void {
+  //   console.log('salio del focus');
+  // }
 
   seleccionarNombre(nombreNuevo: string): void {
-    this.nombreUsuarioSeleccionado = nombreNuevo;
+    this.nombrevehiculosSeleccionado = nombreNuevo;
   }
 
-  getUsers(): void {
-    this.servicioBackend.getData('usuarios').subscribe(
+  getVehiculos(): void {
+    this.servicioBackend.getData("vehiculos").subscribe(
       (data) => {
         console.log(data);
         this.datos = data;
       },
 
       (error) => {
-        console.log('Error: ' + error);
+        console.log("Error: " + error);
       }
     );
   }
 
-  saveUser(): void {
-    const datosUser = this.formUser.getRawValue();
-    datosUser['fechaNacimiento'] = new Date(datosUser['fechaNacimiento']);
-
-    console.log(datosUser);
+  saveVehiculos(): void {
+    const datosVehicle = this.formVehiculos.getRawValue();
+    console.log(datosVehicle);
 
     this.servicioBackend
-      .postData('usuarios', JSON.stringify(datosUser))
+      .postData("vehiculos", JSON.stringify(datosVehicle))
       .subscribe({
         next: (data) => {
           console.log(data);
-          this.getUsers();
+          this.getVehiculos();
           Swal.fire(
-            'Usuario creado',
-            'Todo ha salido muy bien con la creación del usuario',
-            'success'
+            "vehiculo creado",
+            "Todo ha salido muy bien con la creación del vehiculo",
+            "success"
           );
         },
         error: (error) => {
           console.log(error);
-          Swal.fire('Usuario NO creado', 'Ocurrió un error', 'error');
+          Swal.fire("vehiculo NO creado", "Ocurrió un error", "error");
         },
         complete: () => {
-          console.log('complete');
+          console.log("complete");
         },
       });
   }
 
   changeShowForm() {
-    this.modeForm = 'adicion';
+    this.modeForm = "adicion";
     this.showForm = !this.showForm;
   }
 
-  deleteUser(code: string): void {
+  deleteVehiculos(code: string): void {
     console.log(code);
 
     Swal.fire({
-      title: '¿Está seguro de eliminar el usuario?',
+      title: "¿Está seguro de eliminar el vehiculo?",
       showDenyButton: false,
       showCancelButton: true,
-      confirmButtonText: 'Eliminar',
+      confirmButtonText: "Eliminar",
       // denyButtonText: `Don't save`,
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.servicioBackend.deleteData('usuarios', code).subscribe({
+        this.servicioBackend.deleteData("vehiculos", code).subscribe({
           next: (data) => {
-            this.getUsers();
-            Swal.fire('Ok!', 'Eliminado', 'success');
+            this.getVehiculos();
+            Swal.fire("Ok!", "Eliminado el vehiculo", "success");
           },
           error: (error) => {
             console.log(error);
-            Swal.fire('Usuario NO eliminado', 'Ocurrió un error', 'error');
+            Swal.fire("vehiculo NO eliminado", "Ocurrió un error", "error");
           },
           complete: () => {
-            console.log('complete');
+            console.log("complete");
           },
         });
       }
     });
   }
 
-  selectUserEdit(user: any): void {
+  selectVehiculoEdit(vehicle: any): void {
     this.showForm = true;
-    this.modeForm = 'edicion';
-    this.formUser.patchValue(user);
+    this.modeForm = "edicion";
+    this.formVehiculos.patchValue(vehicle);
   }
 
-  updateUser(): void {}
+  updateVehiculos(): void {
+    const datosVehicle = this.formVehiculos.getRawValue();
+    console.log(datosVehicle);
+    this.servicioBackend
+      .postData("vehiculos", JSON.stringify(datosVehicle))
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.getVehiculos();
+        },
+      });
+  }
 }
