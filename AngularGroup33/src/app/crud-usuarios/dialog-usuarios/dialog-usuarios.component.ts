@@ -1,11 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { RequestBackendService } from "src/app/request-backend.service";
-import Swal from "sweetalert2";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { Inject } from "@angular/core";
 import { IfStmt, ThisReceiver } from "@angular/compiler";
 import { DataRowOutlet } from "@angular/cdk/table";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-dialog-usuarios",

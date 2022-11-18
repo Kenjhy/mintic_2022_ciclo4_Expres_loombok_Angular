@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { RequestBackendService } from "src/app/request-backend.service";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import Swal from "sweetalert2";
 
 @Component({
@@ -11,61 +11,7 @@ import Swal from "sweetalert2";
 })
 export class DialogVehiculosComponent implements OnInit {
   formVehiculosDialog: FormGroup = new FormGroup({});
-  modeForm = "adicion";
-
-  tipos = [
-    {
-      text: "Camion",
-      value: "camion",
-    },
-    {
-      text: "Buseta",
-      value: "Buseta",
-    },
-    {
-      text: "Carro Particular",
-      value: "carro-Particular",
-    },
-    {
-      text: "Camioneta",
-      value: "camioneta",
-    },
-    {
-      text: "Deportivo",
-      value: "deportivo",
-    },
-  ];
-
-  cars = [
-    {
-      text: "mazda",
-      value: "Mazda / Familia",
-    },
-    {
-      text: "chevrolet",
-      value: "Chevrolet / Todoterreno",
-    },
-    {
-      text: "audi",
-      value: "Audi / Todoterreno",
-    },
-    {
-      text: "kia",
-      value: "KIA / Picanto",
-    },
-    {
-      text: "BMW",
-      value: "BMW / Sport3",
-    },
-    {
-      text: "mercedez",
-      value: "Mercedez-Benz / Crucero",
-    },
-    {
-      text: "ford",
-      value: "Ford / RANGER",
-    },
-  ];
+  modeForm = "adicion"; 
 
   constructor(
     private fb: FormBuilder,
@@ -170,4 +116,58 @@ export class DialogVehiculosComponent implements OnInit {
         },
       });
   }
+
+  tipos = [
+    {
+      text: "Camion",
+      value: "camion",
+    },
+    {
+      text: "Buseta",
+      value: "Buseta",
+    },
+    {
+      text: "Carro Particular",
+      value: "carro-Particular",
+    },
+    {
+      text: "Camioneta",
+      value: "camioneta",
+    },
+    {
+      text: "Deportivo",
+      value: "deportivo",
+    },
+  ];
+
+  cars = [
+    {
+      text: "mazda",
+      value: "Mazda / Familia",
+    },
+    {
+      text: "chevrolet",
+      value: "Chevrolet / Todoterreno",
+    },
+    {
+      text: "audi",
+      value: "Audi / Todoterreno",
+    },
+    {
+      text: "kia",
+      value: "KIA / Picanto",
+    },
+    {
+      text: "BMW",
+      value: "BMW / Sport3",
+    },
+    {
+      text: "mercedez",
+      value: "Mercedez-Benz / Crucero",
+    },
+    {
+      text: "ford",
+      value: "Ford / RANGER",
+    },
+  ];
 }

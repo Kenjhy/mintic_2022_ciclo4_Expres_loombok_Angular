@@ -1,4 +1,3 @@
-
 <div class="cls-form" [formGroup]="formUserDialog">
   <h3>
     {{ modeForm == "adicion" ? "Nuevo Usuario" : "Edicion Usuario" }}
@@ -10,8 +9,6 @@
       <input matInput formControlName="nombre" />
     </mat-form-field>
   </div>
-
-  <div class="cls-field"></div>
 
   <div class="cls-field">
     <mat-form-field appearance="outline">
@@ -30,8 +27,7 @@
   <div class="cls-field">
     <mat-form-field appearance="outline">
       <mat-label>Tipo:</mat-label>
-      <mat-select
-        formControlName="tipoUsuario">
+      <mat-select formControlName="tipoUsuario">
         <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
           {{ tipo.text }}</mat-option
         >
@@ -39,9 +35,8 @@
     </mat-form-field>
   </div>
 
-  <div class="cls-field"></div>
-
-  <button class="cls-agregar"
+  <button
+    class="cls-agregar"
     *ngIf="modeForm == 'adicion'"
     (click)="saveUser()"
     style="color: #fff !important"
@@ -52,7 +47,8 @@
     <mat-icon>note_add</mat-icon>
   </button>
 
-  <button class="cls-guardar"
+  <button
+    class="cls-guardar"
     *ngIf="modeForm == 'edicion'"
     (click)="updateUser()"
     style="color: #fff !important"
@@ -63,6 +59,7 @@
     <mat-icon>save_alt</mat-icon>
   </button>
 
-  <button class="cls-Cancel" color="primary"  mat-button  mat-dialog-close > Cancelar </button >  
+  <button class="cls-Cancel" color="primary" mat-button mat-dialog-close>
+    Cancelar
+  </button>
 </div>
-

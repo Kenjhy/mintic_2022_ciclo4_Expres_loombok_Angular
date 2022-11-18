@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import Swal from "sweetalert2";
 import { MatDialog } from "@angular/material/dialog";
 import { format } from "date-fns";
-import { DialogUsuariosComponent } from "../crud-usuarios/dialog-usuarios/dialog-usuarios.component";
+import { DialogVehiculosComponent } from "./dialog-vehiculos/dialog-vehiculos.component";
 
 @Component({
   selector: "crud-vehiculos",
@@ -144,7 +144,7 @@ export class CrudVehiculosComponent implements OnInit {
 
 
   openDialogAdd() {
-    const dialogRef = this.dialog.open(DialogUsuariosComponent, {
+    const dialogRef = this.dialog.open(DialogVehiculosComponent, {
       // width: "330px",
       // height: "400px",
       data: {
@@ -159,12 +159,12 @@ export class CrudVehiculosComponent implements OnInit {
     });
   }
 
-  openDialogEdit(user?: string) {
-    const dialogRef = this.dialog.open(DialogUsuariosComponent, {
+  openDialogEdit(vehiculo?: string) {
+    const dialogRef = this.dialog.open(DialogVehiculosComponent, {
       // width: "330px",
       // height: "400px",
       data: {
-        user: user,
+        vehiculo: vehiculo,
         modeForm: "edicion",
       },
     });
