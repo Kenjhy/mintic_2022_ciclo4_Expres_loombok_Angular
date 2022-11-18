@@ -114,7 +114,7 @@ export class DialogVehiculosComponent implements OnInit {
 
   saveVehicle(): void {
     const datosVehicle = this.formVehiculosDialog.getRawValue();
-    datosVehicle["fechaNacimiento"] = new Date(datosVehicle["fechaNacimiento"]);
+    // datosVehicle["fechaNacimiento"] = new Date(datosVehicle["fechaNacimiento"]);
     // datosVehicle["telefono"] = Number(datosVehicle["telefono"]);
     console.log(datosVehicle);
 
