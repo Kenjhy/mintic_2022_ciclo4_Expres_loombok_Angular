@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CrudUsuariosComponent } from './crud-usuarios/crud-usuarios.component';
 import { CrudVehiculosComponent } from './crud-vehiculos/crud-vehiculos.component';
+import { DialogUsuariosComponent } from './crud-usuarios/dialog-usuarios/dialog-usuarios.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatSelectModule} from '@angular/material/select';
@@ -24,6 +25,7 @@ import { EditorNombreComponent } from './crud-usuarios/editor-nombre/editor-nomb
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DialogVehiculosComponent } from './crud-vehiculos/dialog-vehiculos/dialog-vehiculos.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ContentComponent,
     EditorNombreComponent,
     DialogUsuariosComponent,
+    DialogVehiculosComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     HttpClientModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatToolbarModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
