@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import Swal from "sweetalert2";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogUsuariosComponent } from "./dialog-usuarios/dialog-usuarios.component";
-import { format } from 'date-fns';
+import { format } from "date-fns";
 
 @Component({
   selector: "crud-usuarios",
@@ -53,9 +53,17 @@ export class CrudUsuariosComponent implements OnInit {
     this.getUsers();
   }
 
-  showToast(){
-    Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, title: 'Success!', text: ' Detalle Consultado  ', icon: 'success', });
-      }
+  showToast() {
+    Swal.fire({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      title: "Success!",
+      text: " Detalle Consultado  ",
+      icon: "success",
+    });
+  }
 
   seleccionarNombre(nombreNuevo: string): void {
     this.nombreUsuarioSeleccionado = nombreNuevo;
@@ -129,22 +137,20 @@ export class CrudUsuariosComponent implements OnInit {
       );
   }
 
-
   openDialogAdd() {
     const dialogRef = this.dialog.open(DialogUsuariosComponent, {
       // width: "330px",
       // height: "400px",
       data: {
-        modeForm : 'adicion'
+        modeForm: "adicion",
       },
     });
 
-    dialogRef.afterClosed().subscribe((data)=>{
-      if(data){
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
         this.getUsers();
       }
     });
-
   }
 
   openDialogEdit(user?: string) {
@@ -153,23 +159,18 @@ export class CrudUsuariosComponent implements OnInit {
       // height: "400px",
       data: {
         user: user,
-        modeForm : 'edicion' 
+        modeForm: "edicion",
       },
     });
-    dialogRef.afterClosed().subscribe((data)=>{
-      if(data){
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
         this.getUsers();
       }
     });
   }
-setaFormat(dateString: string): string{
-  const date = new Date(dateString);
-  const newDate = format(date, 'd-LLL-yyyy');
-  return newDate;
-}
+  setaFormat(dateString: string): string {
+    const date = new Date(dateString);
+    const newDate = format(date, "d-LLL-yyyy");
+    return newDate;
   }
-
-// function setaFormat(dateString: any, str: any) {
-//   throw new Error("Function not implemented.");
-// }
-
+}

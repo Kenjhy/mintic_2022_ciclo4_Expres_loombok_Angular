@@ -1,105 +1,107 @@
-  <div class="cls-form" [formGroup]="formVehiculosDialog">
+<div class="cls-form" [formGroup]="formVehiculosDialog">
+  <h3>
+    {{ modeForm == "adicion" ? "Nuevo Vehiculo" : "Edicion Vehiculo" }}
+  </h3>
 
-    <h3>
-        {{ modeForm == "adicion" ? "Nuevo Vehiculo" : "Edicion Vehiculo" }}
-      </h3>
+  <div class="cls-field">
+    <mat-form-field appearance="outline">
+      <mat-label>Numero de la Placa</mat-label>
+      <input matInput formControlName="nombre" />
+    </mat-form-field>
+  </div>
 
-      <div class="cls-field">
-        <mat-form-field appearance="outline">
-          <mat-label>Numero de la Placa</mat-label>
-          <input matInput formControlName="nombre" />
-        </mat-form-field>
-      </div>
+  <div class="cls-field">
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo de Vehiculo:</mat-label>
+      <mat-select formControlName="tipo">
+        <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+          {{ tipo.text }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-      <div class="cls-field">
-        <mat-form-field appearance="outline">
-          <mat-label>Tipo de Vehiculo:</mat-label>
-          <mat-select
-          name="" id=""
-            formControlName="tipo">
-            <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
-              {{ tipo.text }}</mat-option
-            >
-          </mat-select>
-        </mat-form-field>
-      </div>
+  <div class="cls-field">
+    <mat-form-field appearance="outline">
+      <mat-label>Marca del Vehiculo:</mat-label>
+      <mat-select formControlName="marca">
+        <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+          {{ tipo.value }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-      <div class="cls-field">
-        <mat-form-field appearance="outline">
-          <mat-label>Marca del Vehiculo:</mat-label>
-          <mat-select
-          type="text"
-          formControlName="marca">
-            <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
-              {{ tipo.value }}</mat-option
-            >
-          </mat-select>
-        </mat-form-field>
-      </div>
+  <div class="cls-field">
+    <mat-form-field appearance="outline">
+      <mat-label>Modelo del Vehiculo:</mat-label>
+      <input matInput type="text" formControlName="modelo" />
+    </mat-form-field>
+  </div>
 
-      <div class="cls-field">
-        <mat-form-field appearance="outline">
-          <mat-label>Modelo del Vehiculo:</mat-label>
-          <input matInput type="text" formControlName="modelo" />
-        </mat-form-field>
-      </div>
+  <div class="cls-field">
+    <mat-form-field appearance="outline">
+      <mat-label>Capacidad de Pasajeros:</mat-label>
+      <input
+        matInput
+        type="string"
+        placeholder="00-00"
+        formControlName="capacidad_pasajeros"
+      />
+    </mat-form-field>
+  </div>
 
-      <div class="cls-field">
-        <mat-form-field appearance="outline">
-          <mat-label for="tentacles">Capacidad de Pasajeros:</mat-label>
-          <input matInput type="string"
-          placeholder="00-00"
-          formControlName="capacidad_pasajeros"
-          id="tentacles" name="tentacles"
-         min="1" max="60" />
-        </mat-form-field>
-      </div>
+  <div class="cls-field">
+    <mat-form-field appearance="outline">
+      <mat-label for="tentacles">Cilindraje del Vehiculo:</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="cilindraje"
+        placeholder="00000"
+      />
+    </mat-form-field>
+  </div>
 
-      <div class="cls-field">
-        <mat-form-field appearance="outline">
-          <mat-label for="tentacles">Cilindraje del Vehiculo:</mat-label>
-          <input matInput type="text" formControlName="cilindraje" 
-          placeholder="00000"
-          id="tentacles" name="tentacles"
-           min="125" max="10000" />
-        </mat-form-field>
-      </div>
-   
-      <div class="cls-field">
-        <mat-form-field appearance="outline">
-          <mat-label>Pais Origen del Vehiculo:</mat-label>
-          <input matInput type="text" formControlName="pais" />
-        </mat-form-field>
-      </div>
+  <div class="cls-field">
+    <mat-form-field appearance="outline">
+      <mat-label>Pais Origen del Vehiculo:</mat-label>
+      <input matInput type="text" formControlName="pais" />
+    </mat-form-field>
+  </div>
 
-      <div class="cls-field">
-        <mat-form-field appearance="outline">
-          <mat-label>Descripcion del Vehiculo:</mat-label>
-          <textarea matInput type="text" formControlName="descripcion"></textarea>
-        </mat-form-field>
-      </div>
-  
-    <button class="cls-agregar"
-      *ngIf="modeForm == 'adicion'"
-      (click)="saveVehicle()"
-      style="color: #fff !important"
-      mat-button
-      color="primary"
-    >
-      Agregar
-      <mat-icon>note_add</mat-icon>
-    </button>
-  
-    <button class="cls-guardar"
-      *ngIf="modeForm == 'edicion'"
-      (click)="updateVehicle()"
-      style="color: #fff !important"
-      mat-button
-      color="primary"
-    >
-      Guardar
-      <mat-icon>save_alt</mat-icon>
-    </button>
-    
-    <button class="cls-Cancel" color="primary"  mat-button  mat-dialog-close > Cancelar </button >  
-    </div>
+  <div class="cls-field">
+    <mat-form-field appearance="outline">
+      <mat-label>Descripcion del Vehiculo:</mat-label>
+      <textarea matInput type="text" formControlName="descripcion"></textarea>
+    </mat-form-field>
+  </div>
+
+  <button
+    class="cls-agregar"
+    *ngIf="modeForm == 'adicion'"
+    (click)="saveVehicle()"
+    style="color: #fff !important"
+    mat-button
+    color="primary"
+  >
+    Agregar
+    <mat-icon>note_add</mat-icon>
+  </button>
+
+  <button
+    class="cls-guardar"
+    *ngIf="modeForm == 'edicion'"
+    (click)="updateVehicle()"
+    style="color: #fff !important"
+    mat-button
+    color="primary"
+  >
+    Guardar
+    <mat-icon>save_alt</mat-icon>
+  </button>
+
+  <button class="cls-Cancel" color="primary" mat-button mat-dialog-close>
+    Cancelar
+  </button>
+</div>
