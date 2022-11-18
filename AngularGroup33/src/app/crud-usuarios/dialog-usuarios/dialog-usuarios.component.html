@@ -1,0 +1,81 @@
+<div class="cls-form" [formGroup]="formUserDialog">
+  <h3>
+    {{ modeForm == "adicion" ? "Nuevo Usuario" : "Edicion Usuario" }}
+  </h3>
+
+  <div class="cls-field">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" />
+    </mat-form-field>
+  </div>
+
+  <div class="cls-field"></div>
+
+  <div class="cls-field">
+    <mat-form-field appearance="outline">
+      <mat-label>Telefono</mat-label>
+      <input type="number" matInput formControlName="telefono" />
+    </mat-form-field>
+  </div>
+
+  <div class="cls-field">
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha de nacimiento:</mat-label>
+      <input matInput type="date" formControlName="fecha nacimiento" />
+    </mat-form-field>
+  </div>
+
+  <div class="cls-field">
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo:</mat-label>
+      <mat-select>
+        formControlName="tipoUsuario">
+        <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+          {{ tipo.text }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="cls-field"></div>
+
+  <!-- 
+  <div class="cls-field">
+    <label for="">Sede:</label>
+    <input
+      type="text"
+      placeholder="00-00-00"
+      formControlName="sedeId"
+    />
+  </div>
+
+  <div class="cls-field">
+    <label for="">Rol:</label>
+    <input
+      type="text"
+      placeholder="00-00-00"
+      formControlName="rolId"
+    />
+  </div> -->
+
+  <button
+    *ngIf="modeForm == 'adicion'"
+    (click)="saveUser()"
+    style="color: #fff !important"
+    mat-button
+    color="primary"
+  >
+    Agregar
+  </button>
+
+  <button
+    *ngIf="modeForm == 'edicion'"
+    (click)="updateUser()"
+    style="color: #fff !important"
+    mat-button
+    color="primary"
+  >
+    Guardar
+  </button>
+</div>
