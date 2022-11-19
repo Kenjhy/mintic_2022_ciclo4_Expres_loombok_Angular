@@ -5,3 +5,4 @@ export * from './usuario.model';
 export * from './revision.model';
 export * from './sede.model';
 export * from './repuesto.model';
+export * from './credenciales.model';

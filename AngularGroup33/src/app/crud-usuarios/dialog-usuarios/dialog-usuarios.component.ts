@@ -64,7 +64,10 @@ export class DialogUsuariosComponent implements OnInit {
     datosUser["fechaNacimiento"] = new Date(datosUser["fechaNacimiento"]);
     // datosUser["telefono"] = Number(datosUser["telefono"]);
     console.log(datosUser);
-
+    if(datosUser.isUsuario == ""){
+      delete datosUser.isUsuario;
+    }
+    
     this.servicioBackend
       .postData("usuarios", JSON.stringify(datosUser))
       .subscribe({
