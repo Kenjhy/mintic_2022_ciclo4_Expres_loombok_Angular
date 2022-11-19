@@ -20,14 +20,14 @@ export class DialogVehiculosComponent implements OnInit {
     public dialogRef: MatDialogRef<DialogVehiculosComponent>
   ) {
     this.formVehiculosDialog = this.fb.group({
-      placa: [""],
-      tipo: [""],
-      marca: [""],
-      modelo: [""],
-      capacidad_pasajeros: [""],
-      cilindraje: [""],
-      pais: [""],
-      descripcion: [""],
+      placa: [''],
+      tipo: [''],
+      marca: [''],
+      modelo: [''],
+      capacidad_pasajeros: [''],
+      cilindraje: [''],
+      pais: [''],
+      descripcion: [''],
       usuarioId: ["222"],
     });
     this.sortTipos();
@@ -39,7 +39,7 @@ export class DialogVehiculosComponent implements OnInit {
     //"???"
     if (this.data && this.data.vehiculo) {
       const vehiculo = JSON.parse(JSON.stringify(this.data.vehiculo)); //crear clon del objeto, Crea una copia para no tener problemas de referencia, dato por referencia y por valor, esto eferenica
-      vehiculo["fechaNacimiento"] = vehiculo["fechaNacimiento"].split("T")[0];
+      //vehiculo["fechaNacimiento"] = vehiculo["fechaNacimiento"].split("T")[0];
       this.formVehiculosDialog.patchValue(vehiculo);
       console.log(this.data);
       this.modeForm = this.data.modeForm;
@@ -60,12 +60,15 @@ export class DialogVehiculosComponent implements OnInit {
 
   saveVehicle(): void {
     const datosVehicle = this.formVehiculosDialog.getRawValue();
-    datosVehicle["fechaNacimiento"] = new Date(datosVehicle["fechaNacimiento"]);
+    //datosVehicle["fechaNacimiento"] = new Date(datosVehicle["fechaNacimiento"]);
     // datosVehicle["telefono"] = Number(datosVehicle["telefono"]);
     console.log(datosVehicle);
-
+    //if(datosVehicle.placs == ""){
+      //delete datosVehicle.placs;
+    //}
+    
     this.servicioBackend
-      .postData("vehiculo", JSON.stringify(datosVehicle))
+      .postData("vehiculos", JSON.stringify(datosVehicle))
       .subscribe({
         next: (data) => {
           console.log(data);
@@ -90,9 +93,9 @@ export class DialogVehiculosComponent implements OnInit {
 
   updateVehicle(): void {
     const newData = this.formVehiculosDialog.getRawValue();
-    newData["fechaNacimiento"] = new Date(newData["fechaNacimiento"]);
+    //newData["fechaNacimiento"] = new Date(newData["fechaNacimiento"]);
     this.servicioBackend
-      .updateData("vehiculo", newData.placa, newData)
+      .updateData("vehiculos", newData.placa, newData)
       .subscribe({
         next: (data) => {
           console.log(data);

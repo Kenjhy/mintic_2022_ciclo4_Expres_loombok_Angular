@@ -147,6 +147,7 @@ export class CrudUsuariosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((data) => {
+      this.getUsers();
       if (data) {
         this.getUsers();
       }

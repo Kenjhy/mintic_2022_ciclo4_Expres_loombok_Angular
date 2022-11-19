@@ -3,8 +3,8 @@ import { RequestBackendService } from "../request-backend.service";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import Swal from "sweetalert2";
 import { MatDialog } from "@angular/material/dialog";
-import { format } from "date-fns";
 import { DialogVehiculosComponent } from "./dialog-vehiculos/dialog-vehiculos.component";
+import { format } from "date-fns";
 
 @Component({
   selector: "crud-vehiculos",
@@ -153,6 +153,7 @@ export class CrudVehiculosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((data) => {
+      this.getVehiculos();
       if (data) {
         this.getVehiculos();
       }
