@@ -50,7 +50,7 @@ export class CrudVehiculosComponent implements OnInit {
       cilindraje: [""],
       pais: [""],
       descripcion: [""],
-      usuarioId: ["222"],
+      usuarioId: ["Daniel"],
     });
   }
 

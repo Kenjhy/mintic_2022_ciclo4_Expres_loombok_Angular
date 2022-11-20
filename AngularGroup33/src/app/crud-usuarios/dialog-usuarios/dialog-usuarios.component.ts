@@ -2,8 +2,6 @@ import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { RequestBackendService } from "src/app/request-backend.service";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { IfStmt, ThisReceiver } from "@angular/compiler";
-import { DataRowOutlet } from "@angular/cdk/table";
 import Swal from "sweetalert2";
 
 @Component({
@@ -60,7 +58,6 @@ export class DialogUsuariosComponent implements OnInit {
 
   saveUser(): void {
     const datosUser = this.formUserDialog.getRawValue(); 
-    
     datosUser["fechaNacimiento"] = new Date(datosUser["fechaNacimiento"]);
     // datosUser["telefono"] = Number(datosUser["telefono"]);
     console.log(datosUser);

@@ -1,0 +1,35 @@
+
+.cls-form {
+    font-size: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+
+.cls-field {
+    gap: 10px;
+    justify-content: center;
+}
+
+.cls-agregar{
+    padding: 20px;
+}
+
+.cls-guardar{
+    padding: 20px;
+}
+
+.cls-Cancel{
+    margin-right: 15px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+button {
+    color: #fff !important;
+    height: 21px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+
+}

@@ -26,6 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogVehiculosComponent } from './crud-vehiculos/dialog-vehiculos/dialog-vehiculos.component';
+import { CrudMecanicosComponent } from './crud-mecanicos/crud-mecanicos.component';
+import { DialogMecanicosComponent } from './crud-mecanicos/dialog-mecanicos/dialog-mecanicos.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { DialogVehiculosComponent } from './crud-vehiculos/dialog-vehiculos/dial
     EditorNombreComponent,
     DialogUsuariosComponent,
     DialogVehiculosComponent,
+    CrudMecanicosComponent,
+    DialogMecanicosComponent,
   ],
   imports: [
     BrowserModule,

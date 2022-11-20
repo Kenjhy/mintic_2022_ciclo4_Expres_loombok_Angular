@@ -1,3 +1,4 @@
+
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { RequestBackendService } from "src/app/request-backend.service";
@@ -5,21 +6,21 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import Swal from "sweetalert2";
 
 @Component({
-  selector: "app-dialog-vehiculos",
-  templateUrl: "./dialog-vehiculos.component.html",
-  styleUrls: ["./dialog-vehiculos.component.scss"],
+  selector: 'app-dialog-mecanicos',
+  templateUrl: './dialog-mecanicos.component.html',
+  styleUrls: ['./dialog-mecanicos.component.scss']
 })
-export class DialogVehiculosComponent implements OnInit {
-  formVehiculosDialog: FormGroup = new FormGroup({});
+export class DialogMecanicosComponent implements OnInit {
+  formMecanicosDialog: FormGroup = new FormGroup({});
   modeForm = "adicion"; 
 
   constructor(
     private fb: FormBuilder,
     private servicioBackend: RequestBackendService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<DialogVehiculosComponent>
+    public dialogRef: MatDialogRef<DialogMecanicosComponent>
   ) {
-    this.formVehiculosDialog = this.fb.group({
+    this.formMecanicosDialog = this.fb.group({
       placa: [''],
       tipo: [''],
       marca: [''],
@@ -37,10 +38,10 @@ export class DialogVehiculosComponent implements OnInit {
 
   ngAfterViewInit(): void {
     //"???"
-    if (this.data && this.data.vehiculo) {
-      const vehiculo = JSON.parse(JSON.stringify(this.data.vehiculo)); //crear clon del objeto, Crea una copia para no tener problemas de referencia, dato por referencia y por valor, esto eferenica
-      //vehiculo["fechaNacimiento"] = vehiculo["fechaNacimiento"].split("T")[0];
-      this.formVehiculosDialog.patchValue(vehiculo);
+    if (this.data && this.data.mecanico) {
+      const mecanico = JSON.parse(JSON.stringify(this.data.mecanico)); //crear clon del objeto, Crea una copia para no tener problemas de referencia, dato por referencia y por valor, esto eferenica
+      //mecanico["fechaNacimiento"] = mecanico["fechaNacimiento"].split("T")[0];
+      this.formMecanicosDialog.patchValue(mecanico);
       console.log(this.data);
       this.modeForm = this.data.modeForm;
     }
@@ -59,7 +60,7 @@ export class DialogVehiculosComponent implements OnInit {
   }
 
   saveVehicle(): void {
-    const datosVehicle = this.formVehiculosDialog.getRawValue();
+    const datosVehicle = this.formMecanicosDialog.getRawValue();
     //datosVehicle["fechaNacimiento"] = new Date(datosVehicle["fechaNacimiento"]);
     // datosVehicle["telefono"] = Number(datosVehicle["telefono"]);
     console.log(datosVehicle);
@@ -92,7 +93,7 @@ export class DialogVehiculosComponent implements OnInit {
   }
 
   updateVehicle(): void {
-    const newData = this.formVehiculosDialog.getRawValue();
+    const newData = this.formMecanicosDialog.getRawValue();
     //newData["fechaNacimiento"] = new Date(newData["fechaNacimiento"]);
     this.servicioBackend
       .updateData("vehiculos", newData.placa, newData)
