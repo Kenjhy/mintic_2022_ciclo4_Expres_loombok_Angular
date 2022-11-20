@@ -28,6 +28,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogVehiculosComponent } from './crud-vehiculos/dialog-vehiculos/dialog-vehiculos.component';
 import { CrudMecanicosComponent } from './crud-mecanicos/crud-mecanicos.component';
 import { DialogMecanicosComponent } from './crud-mecanicos/dialog-mecanicos/dialog-mecanicos.component';
+import { CrudRepuestoComponent } from './crud-repuesto/crud-repuesto.component';
+import { CrudRevisionComponent } from './crud-revision/crud-revision.component';
+import { CrudSedeComponent } from './crud-sede/crud-sede.component';
+import { CrudJefeOperacionesComponent } from './crud-jefe-operaciones/crud-jefe-operaciones.component';
+import { DialogJefeOperacionesComponent } from './crud-jefe-operaciones/dialog-jefe-operaciones/dialog-jefe-operaciones.component';
+import { DialogSedeComponent } from './crud-sede/dialog-sede/dialog-sede.component';
+import { DialogRevisionComponent } from './crud-revision/dialog-revision/dialog-revision.component';
+import { DialogRepuestoComponent } from './crud-repuesto/dialog-repuesto/dialog-repuesto.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +52,14 @@ import { DialogMecanicosComponent } from './crud-mecanicos/dialog-mecanicos/dial
     DialogVehiculosComponent,
     CrudMecanicosComponent,
     DialogMecanicosComponent,
+    CrudRepuestoComponent,
+    CrudRevisionComponent,
+    CrudSedeComponent,
+    CrudJefeOperacionesComponent,
+    DialogJefeOperacionesComponent,
+    DialogSedeComponent,
+    DialogRevisionComponent,
+    DialogRepuestoComponent,
   ],
   imports: [
     BrowserModule,
