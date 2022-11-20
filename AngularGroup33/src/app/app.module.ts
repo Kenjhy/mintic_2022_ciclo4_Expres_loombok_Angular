@@ -26,6 +26,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogVehiculosComponent } from './crud-vehiculos/dialog-vehiculos/dialog-vehiculos.component';
+import { CrudRepuestoComponent } from './crud-repuesto/crud-repuesto.component';
+import { CrudRevisionComponent } from './crud-revision/crud-revision.component';
+import { CrudSedeComponent } from './crud-sede/crud-sede.component';
+import { CrudJefeOperacionesComponent } from './crud-jefe-operaciones/crud-jefe-operaciones.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,10 @@ import { DialogVehiculosComponent } from './crud-vehiculos/dialog-vehiculos/dial
     EditorNombreComponent,
     DialogUsuariosComponent,
     DialogVehiculosComponent,
+    CrudRepuestoComponent,
+    CrudRevisionComponent,
+    CrudSedeComponent,
+    CrudJefeOperacionesComponent,
   ],
   imports: [
     BrowserModule,
